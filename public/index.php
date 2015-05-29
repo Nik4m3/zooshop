@@ -6,7 +6,7 @@ require('../vendor/autoload.php');
 /* Установить папку для вьюшек */
 Flight::set('flight.views.path', '../views');
 /* Путь до файла с БД */
-Flight::set('pathToDb', '../zooshop.db');
+Flight::set('pathToDb', '../db/zooshop.db');
 /* Название таблицы с данными склада */
 Flight::set('storeTable', 'store');
 
