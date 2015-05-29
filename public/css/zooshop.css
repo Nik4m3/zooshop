@@ -1,0 +1,95 @@
+@font-face {
+	font-family: "Lobster";
+	src: url(../fonts/Lobster.ttf) format("truetype");
+}
+
+body {
+    font-size: 17px;
+}
+
+h2 {
+    padding-top: 20px;
+    text-align: center;
+    font-family: 'Lobster', sans-serif;
+    font-size: 35px;
+}
+
+th {
+    text-align: center;
+}
+
+#goods {
+    text-align: center;
+}
+
+#category {
+    width: 100%;
+}
+
+.text-muted {
+	font-family: 'Lobster', sans-serif;
+}
+
+.main-buttons {
+    margin: 0 auto;
+}
+
+.store-about {
+	text-align: center;
+}
+
+.submit-button, .sell-btn {
+	border: none;
+}
+
+.sell-btn {
+    border-radius: 4px;
+}
+
+.alerts {
+    z-index: 9999;
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	right: 20px;
+	opacity: 0.9;
+}
+
+.main-choice-nav {
+    margin-left: 60px !important;
+}
+
+.form-control {
+	font-size: 17px;
+}
+
+.not-found {
+	text-align: center;
+	font-size: 30px;
+	opacity: 0.5;
+}
+
+.glyphicon-ok {
+	color: forestgreen;
+}
+
+.multiselect {
+	width:20em;
+	height:15em;
+	border:solid 1px #c0c0c0;
+	overflow:auto;
+}
+
+.multiselect label {
+	display:block;
+}
+
+.multiselect-on {
+	color:#ffffff;
+	background-color:#000099;
+}
+
+.subcat {
+    margin: 0 auto;
+    line-height: 20px;
+}
