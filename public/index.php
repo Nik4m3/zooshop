@@ -250,7 +250,6 @@ function postData($url, $data)
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$result = curl_exec($ch);
 	curl_close($ch);
-
 	return $result;
 }
 
@@ -311,7 +310,8 @@ Flight::route('POST /select', function() {
 	$data = parseData($userInput);
 	$sql = makeSelectSql($data);
 	$result = execSql($sql, 'select');
-	$url = "http://{$_SERVER['HTTP_HOST']}/make-table";
+	$location = (file_exists('../.test')) ? 'localhost' : $_SERVER['HTTP_HOST'];
+	$url = "http://$location/make-table";
 	$status = $result['status'];
 
 	if ($result['status'] == 'success') {

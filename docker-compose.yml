@@ -1,0 +1,8 @@
+web:
+  build: ./docker
+  container_name: zooshop_web
+  ports:
+    - "8000:80"
+  volumes:
+    - .:/app
+  command: /root/run.sh

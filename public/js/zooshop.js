@@ -1,3 +1,36 @@
+
+/* Показ флэш-сообщений */
+var setFlash = function(type, message) {
+	$('<div class="alert alert-'+type+'" role="alert">'+message+
+		'<button type="button" class="close" data-dismiss="alert" aria-label="Закрыть">'+
+		'<span aria-hidden="true">&times;</span></button></div>').appendTo('.alerts');
+	if (type !== 'danger') {
+		$(".alert").fadeOut(7000);
+		$().alert('close');
+	}
+};
+
+/* Взаимодействие с сервером */
+var getData = function(type, url, data, noasync) {
+	var answer = {};
+	$.ajax({
+		type: type,
+		url: url,
+		data: (data === 'undefined') ? '' : data,
+		success: function(data) {
+			answer.status = data.status;
+			answer.description = data.description;
+		},
+		error: function(request, status, error) {
+			answer.status = 'danger';
+			answer.description = 'Не удалось соединиться с сервером: ' + error;
+		},
+		async: (noasync === 'undefined')
+	});
+	return answer;
+};
+
+/* Основной функционал */
 $(document).ready(function() {
 
     /* Простейший скороллинг для удобства просмотра таблицы с результатами поиска */
@@ -18,37 +51,6 @@ $(document).ready(function() {
             });
         });
     };
-
-	/* Показ флэш-сообщений */
-	window.setFlash = function(type, message) {
-		$('<div class="alert alert-'+type+'" role="alert">'+message+
-		'<button type="button" class="close" data-dismiss="alert" aria-label="Закрыть">'+
-		'<span aria-hidden="true">&times;</span></button></div>').appendTo('.alerts');
-		if (type !== 'danger') {
-			$(".alert").fadeOut(7000);
-			$().alert('close');
-		}
-	};
-
-	/* Взаимодействие с сервером */
-	window.getData = function(type, url, data, noasync) {
-		var answer = {};
-		$.ajax({
-			type: type,
-			url: url,
-			data: (data === 'undefined') ? '' : data,
-			success: function(data) {
-				answer.status = data.status;
-				answer.description = data.description;
-			},
-			error: function(request, status, error) {
-				answer.status = 'danger';
-				answer.description = 'Не удалось соединиться с сервером: ' + error;
-			},
-			async: (noasync === 'undefined')
-		});
-		return answer;
-	};
 
     /* Подсветка меню */
     $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
@@ -111,6 +113,7 @@ $(document).ready(function() {
 			if (data.status === 'success') {
 				setFlash(data.status, 'Запрос выполнен успешно');
 				$('.results').empty();
+				console.log(data);
 				$('.container').append(data.description);
                 $('body').scrollTo('.results');
 			} else {
